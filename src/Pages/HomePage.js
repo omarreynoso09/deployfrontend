@@ -8,24 +8,31 @@ const HomePage = ({
 }) => {
   return (
     <div>
-      <label>Client Message : {clientMessage}</label>
-      <label>Server Message : {serverMessage}</label>
-      <label>input</label>
-      <br />
+      <div>Client:{clientMessage}</div>
+      <div>Server:{serverMessage}</div>
+
+      <label>Input:</label>
       <input
         type="text"
-        value={clientMessage}
-        onChange={(e) => {
+        onChange={(event) => {
           const dateTime = new Date();
-          `Message: ${e.target.value} at time ${dateTime.toString()}`;
+          const newClientMessage = `Message: ${
+            event.target.value
+          } at time ${dateTime.toString()}`;
+          setClientMessage(newClientMessage);
         }}
-      />
+      ></input>
+      <br></br>
+      <br></br>
+
       <button
-        onClick={() => {
+        id="send"
+        type="submit"
+        onClick={(event) => {
           sendReceiveMessage();
         }}
       >
-        button
+        Send
       </button>
     </div>
   );

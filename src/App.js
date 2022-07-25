@@ -1,18 +1,16 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import HomePage from "./Pages/HomePage";
+
 const urlEndpoint = process.env.REACT_APP_DATABASE_URL;
 
 function App() {
   const [clientMessage, setClientMessage] = useState("");
   const [serverMessage, setServerMessage] = useState("");
 
-  const sendRecieveMessage = async () => {
-    console.log(
-      "process.env.DATABASE_URL: " + process.env.REACT_APP_DATABASE_URL
-    );
+  const sendReceiveMessage = async () => {
+    console.log("client message: ", clientMessage);
     const response = await fetch(`${urlEndpoint}/post-message`, {
       method: "POST",
       headers: {
@@ -35,7 +33,7 @@ function App() {
                 clientMessage={clientMessage}
                 setClientMessage={setClientMessage}
                 serverMessage={serverMessage}
-                sendRecieveMessage={sendRecieveMessage}
+                sendReceiveMessage={sendReceiveMessage}
               />
             }
           />
