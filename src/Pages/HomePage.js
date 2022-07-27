@@ -5,6 +5,7 @@ const HomePage = ({
   setClientMessage,
   serverMessage,
   sendReceiveMessage,
+  userList,
 }) => {
   return (
     <div>
@@ -23,6 +24,22 @@ const HomePage = ({
         }}
       ></input>
       <br></br>
+      {userList.map((user, idx) => {
+        return (
+          <div key={idx}>
+            <p>
+              First Name: <strong>{user.firstName}</strong>
+            </p>
+            <p>
+              Last Name: <strong>{user.lastName}</strong>
+            </p>
+            <p>
+              Email: <strong>{user.email}</strong>
+            </p>
+            <hr />
+          </div>
+        );
+      })}
       <br></br>
 
       <button

@@ -4,10 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import PostUser from "./Pages/PostUser";
 
-
 const urlEndpoint = process.env.REACT_APP_URL_ENDPOINT;
-
-
 
 function App() {
   const [clientMessage, setClientMessage] = useState("");
@@ -15,8 +12,6 @@ function App() {
   const [userList, setUserList] = useState([]);
 
   const [userUpdateResponse, setUserUpdateResponse] = useState(null);
-
-  const urlEndpoint = process.env.REACT_APP_URL_ENDPOINT;
 
   const postUserData = async (userData) => {
     const url = `${urlEndpoint}/create-user`;
@@ -29,6 +24,7 @@ function App() {
     });
     const responseJSON = await response.json();
     setUserUpdateResponse(responseJSON);
+    return responseJSON;
   };
 
   useEffect(() => {
@@ -63,32 +59,13 @@ function App() {
     const responseJSON = await response.json();
 
     setServerMessage(responseJSON.serverMessage);
-
-    
-
   };
-const postUserData = async (userData) => {
-      const url = urlEndpoint + "/create-user";
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-      const responseJSON = await response.json();
-      return responseJSON;
-    };
+
   return (
     <div className="App">
       <header className="App-header">
         <div>hello</div>
         <Routes>
-          <Route
-            path="/post-user"
-            element={<PostUser postUserData={postUserData} />}
-          />
-
           <Route
             index
             element={
